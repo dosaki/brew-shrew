@@ -1,0 +1,64 @@
+.brewbutton,
+input,
+button{
+  margin:2px;
+  padding:8px;
+  border-radius: 5px;
+  border-width: 1px;
+  border: 1px solid #888;
+  min-width: 33px;
+}
+
+.brewbutton:hover,
+input:hover,
+button:hover{
+  border: 1px solid #444;
+}
+
+.brewbutton,
+input{
+  width:259px;
+}
+
+button{
+  background: #FFF9EC;
+  cursor: pointer;
+}
+
+button:hover{
+  background: #B3AEA5;
+}
+
+.newbrew{
+  width:199px;
+}
+
+.deleteFav{
+  background: transparent;
+}
+.deleteFav:hover{
+  color:black;
+  background: transparent;
+}
+
+#container{
+  width:300px;
+}
+
+#usuals{
+  margin-bottom:4px;
+}
+
+h4{
+  margin-top: 20px;
+  margin-bottom: 2px;
+}
+
+html,
+body,
+button,
+h3,
+h4,
+p{
+  color:#444;
+}

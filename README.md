@@ -1,5 +1,7 @@
-# brew-shrew
+# Brew Shrew - your helpful reminder!
 Chrome extension to request your brews whenever someone goes to make one!
+
+# What? Why?
 
 So far my work experience in England has included a "Would you like a brew?" every 30 minutes.
 

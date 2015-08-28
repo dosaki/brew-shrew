@@ -11,6 +11,12 @@
   },
   "permissions": [
     "cookies",
-    "http://localhost/*"
-  ]
+    "http://*/"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  }
 }

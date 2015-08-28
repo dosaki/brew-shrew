@@ -1,3 +1,4 @@
+.nameInput:focus,
 .brewbutton,
 input,
 button{
@@ -29,6 +30,12 @@ button:hover{
   background: #B3AEA5;
 }
 
+.nameInput{
+  width:131px;
+  background:transparent;
+  border: 1px dashed #ccc;
+}
+
 .newbrew{
   width:199px;
 }
@@ -38,8 +45,9 @@ button:hover{
 }
 .deleteFav:hover{
   color:black;
-  background: transparent;
+  background: #bbb;
 }
+
 
 #container{
   width:300px;
@@ -61,4 +69,51 @@ h3,
 h4,
 p{
   color:#444;
+}
+
+.messages{
+  margin: 8px;
+  padding: 8px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  width: 266px;
+
+  animation:fade 1s 1;
+  -webkit-animation:fade 1s 1;
+  animation-fill-mode: forwards;
+
+  animation-delay:3s;
+  -webkit-animation-delay:3s;
+  -webkit-animation-fill-mode: forwards;
+}
+
+
+@keyframes fade{
+    from {opacity :1;}
+    to {opacity :0;}
+}
+
+@-webkit-keyframes fade{
+    from {opacity :1;}
+    to {opacity :0;}
+}
+
+.messages.success{
+  color: #3c763d;
+  background: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.messages.fail{
+  color: #a94442;
+  background: #f2dede;
+  border-color: #ebccd1;
+}
+
+[disabled],
+[disabled]:hover{
+  background:#eee;
+  color:#666;
+  cursor:default;
+  border-color: #bbb;
 }

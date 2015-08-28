@@ -6,23 +6,29 @@
 
 
   <body>
-      <div id="container">
-        <h3>Feel like having a brew?</h3>
-        <div id="favourites">
-          <h4>The usual</h4>
-          <div id="usuals">
-          </div>
-          <button id="clearFavBtn">Clear All</button>
+    <div id="messages" class="messages" style="display:none;"></div>
+    <div id="container">
+      <h3>Feel like having a brew, <input id="personName" type="text" value="" placeholder="Annonymous" class="nameInput"/>?</h3>
+      <div id="favourites">
+        <h4>The usual</h4>
+        <div id="usuals">
         </div>
-
-        <div id="adhoc">
-          <h4>Something new?</h4>
-          <div id="new">
-            <input id="newBrewInput" type="text" value="" placeholder="Black coffee, 2 sweetners" class="newbrew"/> <button id="askBrew">Ask</button> <button id="addFavBtn">Add</button>
-          </div>
-        </div>
+        <button id="clearFavBtn">Clear All</button>
       </div>
 
-      <script src="popup.js"></script>
+      <div id="adhoc">
+        <h4>Something new?</h4>
+        <div id="new">
+          <input id="newBrewInput" type="text" value="" placeholder="Black coffee, 2 sweetners" class="newbrew"/> <button id="askBrew">Ask</button> <button id="addFavBtn">Add</button>
+        </div>
+      </div>
+    </div>
+    <div id="make">
+      <h4>Or are you going to <button id="prepareKettle">turn the kettle on</button>?</h4>
+    </div>
+
+    <script src="popup.js"></script>
+    <script src="popup.js"></script>
+    <script src="popup.js"></script>
   </body>
 </html>

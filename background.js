@@ -1,5 +1,5 @@
 // See http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/extensions/gmail/background.js
-
+/*
 getBrewerUrl(){
   return "http://localhost:8585/kettle/brewer"
 }
@@ -16,3 +16,4 @@ indicateBrewer(){
     });
   }
 }
+*/

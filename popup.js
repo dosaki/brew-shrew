@@ -1,10 +1,11 @@
-var _domain = "http://localhost";
+var _domain = "http://95.85.44.66";
+//var _domain = "http://localhost";
 var _oneYear = 31556926;
 var _delimiter = "$$!,!$$";
 var _cookieDrinks = "favDrinks";
 var _cookiePerson = "userName";
 var _preparer = "";
-var _serverUrl = "http://localhost:8585/";
+var _serverUrl = _domain + ":8585/";
 var _url = _serverUrl + "kettle/";
 var _intervalIsSet = false;
 
@@ -127,7 +128,10 @@ var prepareKettle = function(){
         message("It looks like " + preparer + " is already boiling some water.", "fail");
       }
 
-      document.getElementById("prepareKettle").disabled = "true";
+      document.getElementById("prepareKettle").innerHTML = "serve the brews"
+      document.getElementById("prepareKettle").onclick = function(){
+        doneServing();
+      };
     });
   });
 }
@@ -141,8 +145,23 @@ var checkPreparer = function(callback){
   });
 }
 
+var doneServing = function(){
+  makeRequest(_url + "doneServing", "", function(data){
+      document.getElementById("prepareKettle").innerHTML = "turn the kettle on"
+      document.getElementById("prepareKettle").onclick = function(){
+        prepareKettle();
+      };
+  });
+}
+
 var setUser = function(username){
   setCookie(_domain, _cookiePerson, username, _oneYear)
+}
+
+var getUser = function(callBack){
+  getCookies(_domain, _cookiePerson, function(user){
+    callBack(user);
+  });
 }
 
 var setUpBrews = function(drinksValues){
@@ -151,8 +170,12 @@ var setUpBrews = function(drinksValues){
     usuals.innerHTML = "";
     if(isEmpty(drinksValues)){
       usuals.style.display = "none";
+      document.getElementById("clearFavBtn").style.display = "none";
+      document.getElementById("usualsTitle").style.display = "none";
       return;
     }
+
+    document.getElementById("clearFavBtn").style.display = "block";
 
     usuals.style.display = "block";
 
@@ -220,14 +243,23 @@ document.getElementById("askBrew").onclick = function(){
   askBrew(document.getElementById("newBrewInput").value);
 };
 
-document.getElementById("prepareKettle").onclick = function(){
-  prepareKettle();
-};
-
-
-if(!_intervalIsSet){
-  setInterval(function(){
-    checkPreparer(function(){});
-  }, 10000);
-  _intervalIsSet = true;
-}
+getUser(function(user){
+  checkPreparer(function(preparer){
+    if(isEmpty(preparer)){
+      document.getElementById("prepareKettle").onclick = function(){
+        prepareKettle();
+      };
+    }
+    else{
+      if(preparer === user){
+        document.getElementById("prepareKettle").innerHTML = "serve the brews"
+        document.getElementById("prepareKettle").onclick = function(){
+          doneServing();
+        };
+      }
+      else{
+        document.getElementById("prepareKettle").disabled="disabled";
+      }
+    }
+  });
+});

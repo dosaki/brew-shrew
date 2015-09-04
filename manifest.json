@@ -3,7 +3,7 @@
 
   "name": "Brew Shrew",
   "description": "Ask for your brew",
-  "version": "0.1",
+  "version": "0.2",
 
   "browser_action": {
    "default_icon": "icon.png",
@@ -18,8 +18,5 @@
   "permissions": [
     "cookies",
     "http://*/"
-  ],
-  "background": {
-    "persistent": false
-  }
+  ]
 }

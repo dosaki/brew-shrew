@@ -13,11 +13,13 @@ var makeRequest = function(url, data, callBack){
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4) {
+      document.body.style.cursor = "default";
       callBack(xhr);
     }
   }
   xhr.open('GET', url + "?" + data);
   xhr.send();
+  document.body.style.cursor = "progress";
 }
 
 
@@ -40,6 +42,18 @@ var setCookie = function(domain, name, value, expiry) {
 
 var isEmpty = function(value){
   return value === undefined || value === null || value === "" || value.length === 0
+}
+
+var disable = function(element, isLoading){
+  element.disabled = "disabled";
+  if(isLoading){
+    element.style.cursor = "progress";
+  }
+}
+
+var enable = function(element){
+  element.removeAttribute("disabled");
+  element.style.cursor = "pointer";
 }
 
 var joinNoNulls = function(list, delimiter){
@@ -117,11 +131,13 @@ var askBrew = function(brew){
 }
 
 var prepareKettle = function(){
+  disable(document.getElementById("prepareKettle"), true);
   getCookies(_domain, _cookiePerson, function(person){
     checkPreparer(function(preparer){
       if(person === preparer || isEmpty(preparer)){
         makeRequest(_url + "turnOn", "personName="+person, function(){
           message("I'll let people know then.", "success");
+          enable(document.getElementById("prepareKettle"));
         });
       }
       else{
@@ -146,11 +162,14 @@ var checkPreparer = function(callback){
 }
 
 var doneServing = function(){
+  disable(document.getElementById("prepareKettle"), true);
   makeRequest(_url + "doneServing", "", function(data){
       document.getElementById("prepareKettle").innerHTML = "turn the kettle on"
       document.getElementById("prepareKettle").onclick = function(){
         prepareKettle();
       };
+      message("Done serving", "success");
+      enable(document.getElementById("prepareKettle"));
   });
 }
 
@@ -246,9 +265,10 @@ document.getElementById("askBrew").onclick = function(){
 getUser(function(user){
   checkPreparer(function(preparer){
     if(isEmpty(preparer)){
-      document.getElementById("prepareKettle").onclick = function(){
+      document.getElementById("prepareKettle").onclick = function(){;
         prepareKettle();
       };
+      enable(document.getElementById("prepareKettle"));
     }
     else{
       if(preparer === user){
@@ -256,9 +276,7 @@ getUser(function(user){
         document.getElementById("prepareKettle").onclick = function(){
           doneServing();
         };
-      }
-      else{
-        document.getElementById("prepareKettle").disabled="disabled";
+        enable(document.getElementById("prepareKettle"));
       }
     }
   });
